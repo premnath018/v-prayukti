@@ -15,10 +15,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/pail": "^1.2",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "pxlrbt/filament-excel": "^2.3",
         "timokoerber/laravel-one-time-operations": "^1.4"
     },
     "require-dev": {

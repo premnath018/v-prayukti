@@ -15,12 +15,15 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    protected static ?string $navigationGroup = 'User Management';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -52,6 +55,11 @@ class UserResource extends Resource
                             ->unique(ignoreRecord: true)
                             ->required()
                             ->maxLength(255),
+                            Forms\Components\Select::make('roles')
+                            ->relationship('roles', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->searchable(),
                         TextInput::make('password')
                             ->label(__('filament-panels::pages/auth/edit-profile.form.password.label'))
                             ->password()
@@ -105,6 +113,8 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+
                 ]),
             ]);
     }
