@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class EventResource extends Resource
 {
@@ -25,6 +26,23 @@ class EventResource extends Resource
 
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'name',
+            'type'
+        ];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        /** @var User $record */
+        return ['Type' => $record->type];
+    }
+
 
     public static function form(Forms\Form $form): Forms\Form
     {
