@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function configureCommands(): void
     {
-        DB::prohibitDestructiveCommands($this->app->isProduction());
+        DB::prohibitDestructiveCommands(env('APP_ENV') !== 'local');
     }
 
     private function configureModels(): void
@@ -44,9 +44,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // if (env('APP_ENV') !== 'local') {
-        //     URL::forceScheme('https');
-        // }
+        if (env('APP_ENV') != 'local') {
+            URL::forceScheme('https');
+        }
         $this->configureCommands();
         $this->configureModels();
         $this->translatableComponents();

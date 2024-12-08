@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type', ['Technical', 'Non Technical', 'Workshops']);
             $table->text('rulebook_url')->nullable();
             $table->text('domain')->nullable();
-            $table->string('tag')->nullable();
+            $table->text('tag')->nullable();
             $table->string('fee', 50)->nullable();
             $table->date('deadline')->nullable();
             $table->string('team_count', 50)->nullable();
@@ -30,8 +30,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('info')->nullable();
             $table->text('eligibility')->nullable();
-            $table->json('faculty_contacts')->nullable();
-            $table->json('student_contacts')->nullable();
+            $table->string('faculty_contacts')->nullable();
+            $table->string('student_contacts')->nullable();
             $table->string('contact_email')->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active'); // Added status column
             $table->timestamps(); // Automatically adds created_at and updated_at columns

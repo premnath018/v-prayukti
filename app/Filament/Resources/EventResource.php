@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventResource\Pages;
+use App\Filament\Resources\EventResource\Widgets\EventTypeOverview;
 use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -12,11 +13,13 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\RichEditor;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+
 
 class EventResource extends Resource
 {
@@ -74,10 +77,8 @@ class EventResource extends Resource
                     ])
                     ->native(false)
                     ->required(),
-                TextInput::make('rulebook_url')
-                    ->label('Rulebook URL')
-                    ->url()
-                    ->maxLength(2048),
+                RichEditor::make('rulebook_url')
+                    ->label('Rulebook'),
                 TextInput::make('problem_url')
                     ->label('Problem URL')
                     ->url()
@@ -106,11 +107,9 @@ class EventResource extends Resource
                 Textarea::make('eligibility')
                     ->label('Eligibility'),
                 Textarea::make('faculty_contacts')
-                    ->label('Faculty Contacts')
-                    ->json(),
+                    ->label('Faculty Contacts'),
                 Textarea::make('student_contacts')
-                    ->label('Student Contacts')
-                    ->json(),
+                    ->label('Student Contacts'),
                 TextInput::make('contact_email')
                     ->label('Contact Email')
                     ->email()
@@ -201,4 +200,12 @@ public static function table(Tables\Table $table): Tables\Table
             'edit' => Pages\EditEvent::route('/{record}/edit'),
         ];
     }
+
+    public static function getWidgets(): array {
+        return [
+            EventTypeOverview::class
+        ];
+    }
+
+  
 }

@@ -67,14 +67,4 @@ class Event extends Model
         'status',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'faculty_contacts' => 'array',
-        'student_contacts' => 'array',
-        'deadline' => 'date',
-    ];
 }

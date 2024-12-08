@@ -12,6 +12,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Enums\ThemeMode;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -20,7 +21,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Illuminate\Support\Facades\URL;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -29,17 +30,20 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('/')
             ->login(Login::class)
             ->passwordReset()
             ->sidebarCollapsibleOnDesktop()
-//            ->sidebarFullyCollapsibleOnDesktop()
             ->spa()
             ->profile(Profile::class, false)
+            ->defaultThemeMode(ThemeMode::Dark)
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->colors([
                 'primary' => Color::Blue,
             ])
+            ->favicon(asset('images/favicon.png'))
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('3.5rem')
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearchFieldKeyBindingSuffix()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -49,8 +53,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+              #  Widgets\AccountWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

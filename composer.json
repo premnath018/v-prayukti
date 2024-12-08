@@ -17,6 +17,7 @@
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
+        "filament/widgets": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/pail": "^1.2",
         "laravel/sanctum": "^4.0",

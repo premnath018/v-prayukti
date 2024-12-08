@@ -9,7 +9,7 @@ class EventRepository implements EventRepositoryInterface
 {
     public function index()
     {
-        return Event::all();
+        return Event::select('id','name','image_url','type')->get();
     }
 
     public function getById($id)

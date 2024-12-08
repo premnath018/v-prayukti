@@ -6,8 +6,9 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Interfaces\EventRepositoryInterface;
 use App\Classes\ApiResponseClass;
-use App\Http\Resources\EventResource;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Termwind\Components\Dd;
 
 class EventController extends Controller
 {
@@ -21,7 +22,14 @@ class EventController extends Controller
     public function index()
     {
         $data = $this->eventRepository->index();
-        return ApiResponseClass::sendResponse(EventResource::collection($data), '', 200);
+        $data->each(function ($event) {
+            // Modify or restore the image_url here
+            if ($event->image_url) {
+                // For example, prepend a base URL
+                $event->image_url = url('storage/' . $event->image_url);
+            }
+        });
+        return ApiResponseClass::sendResponse($data, '', 200);
     }
 
     public function store(StoreEventRequest $request)
@@ -30,7 +38,7 @@ class EventController extends Controller
         try {
             $event = $this->eventRepository->store($request->all());
             DB::commit();
-            return ApiResponseClass::sendResponse(new EventResource($event), 'Event created successfully.', 201);
+            return ApiResponseClass::sendResponse($event, 'Event created successfully.', 201);
         } catch (\Exception $e) {
             return ApiResponseClass::rollback($e);
         }
@@ -39,7 +47,9 @@ class EventController extends Controller
     public function show($id)
     {
         $event = $this->eventRepository->getById($id);
-        return ApiResponseClass::sendResponse(new EventResource($event), '', 200);
+        $event->image_url = url('storage/' . $event->image_url);
+        $event->deadline = Carbon::parse($event->deadline)->translatedFormat('jS F Y');
+        return ApiResponseClass::sendResponse($event, '', 200);
     }
 
     public function update(UpdateEventRequest $request, $id)
