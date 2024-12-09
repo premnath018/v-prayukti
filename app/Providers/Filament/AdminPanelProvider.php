@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('/')
+            ->path('/admin')
             ->login(Login::class)
             ->passwordReset()
             ->sidebarCollapsibleOnDesktop()

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('short_name')->nullable();
             $table->text('image_url')->nullable();
             $table->text('form_url')->nullable();
-            $table->enum('type', ['Technical', 'Non Technical', 'Workshops']);
+            $table->enum('type', ['Technical', 'Non Technical', 'Workshops','Hackathons']);
             $table->text('rulebook_url')->nullable();
             $table->text('domain')->nullable();
             $table->text('tag')->nullable();

@@ -67,4 +67,9 @@ class Event extends Model
         'status',
     ];
 
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+    
 }

@@ -92,7 +92,11 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
+            'options' => [
+                PDO::ATTR_PERSISTENT => false, // Add this line
+                PDO::ATTR_EMULATE_PREPARES => true, // Disable persistent prepared statements        ],
         ],
+    ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

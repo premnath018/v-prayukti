@@ -25,7 +25,7 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationGroup = 'Content Management System';
+    protected static ?string $navigationGroup = 'Master Hub';
 
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
@@ -74,7 +74,8 @@ class EventResource extends Resource
                         'Technical' => 'Technical',
                         'Non Technical' => 'Non Technical',
                         'Workshops' => 'Workshops',
-                    ])
+                        'Hackathons' => 'Hackathons',
+                        ])
                     ->native(false)
                     ->required(),
                 RichEditor::make('rulebook_url')

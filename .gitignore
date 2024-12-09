@@ -21,3 +21,6 @@ yarn-error.log
 /.vscode
 event.js
 Dockerfile
+**/caddy
+frankenphp
+frankenphp-worker.php
