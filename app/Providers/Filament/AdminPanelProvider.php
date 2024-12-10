@@ -41,9 +41,10 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Blue,
             ])
-            ->favicon(asset('images/favicon.png'))
-            ->brandLogo(asset('images/logo.png'))
+            ->favicon('https://vprayukti.bitsathy.ac.in/assets/logo2-OdPvMQC-.png')
+            ->brandLogo('https://vprayukti.bitsathy.ac.in/assets/logo-BNlefVaD.png')
             ->brandLogoHeight('3.5rem')
+            ->brandName('VPrayukti')
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearchFieldKeyBindingSuffix()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\ForceHttps;
+use App\Http\Middleware\TrustProxies;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;

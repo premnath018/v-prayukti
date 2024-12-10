@@ -16,6 +16,7 @@ class RegistrationController extends Controller
 {
     private RegistrationRepositoryInterface $registrationRepository;
 
+
     public function __construct(RegistrationRepositoryInterface $registrationRepository)
     {
         $this->registrationRepository = $registrationRepository;
@@ -100,8 +101,9 @@ class RegistrationController extends Controller
 
     public function show($id)
     {
-        $event = $this->registrationRepository->getById($id);
-        return ApiResponseClass::sendResponse($event, '', 200);
+        $register= $this->registrationRepository->getById($id);
+        $register->proof_of_payment_url = url('/storage/' . $register->proof_of_payment_url);
+        return ApiResponseClass::sendResponse($register, '', 200);
     }
 
 }
