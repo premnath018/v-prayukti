@@ -69,4 +69,9 @@ class EventController extends Controller
         $this->eventRepository->delete($id);
         return ApiResponseClass::sendResponse('Event deleted successfully.', '', 204);
     }
+
+    public function combos(){
+        $data = $this->eventRepository->combos();
+        return ApiResponseClass::sendResponse($data, '', 200);
+    }
 }

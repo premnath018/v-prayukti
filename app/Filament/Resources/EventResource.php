@@ -75,6 +75,7 @@ class EventResource extends Resource
                         'Non Technical' => 'Non Technical',
                         'Workshops' => 'Workshops',
                         'Hackathons' => 'Hackathons',
+                        'Combo' => 'Combo',
                         ])
                     ->native(false)
                     ->required(),
@@ -170,6 +171,7 @@ public static function table(Tables\Table $table): Tables\Table
                     'Technical' => 'Technical',
                     'Non Technical' => 'Non Technical',
                     'Workshops' => 'Workshops',
+                    'Combo' => 'Combo',
                 ]),
             Tables\Filters\SelectFilter::make('status')
                 ->label('Status')
@@ -179,6 +181,7 @@ public static function table(Tables\Table $table): Tables\Table
                 ]),
         ])
         ->actions([
+            Tables\Actions\ViewAction::make(),
             Tables\Actions\EditAction::make(),
         ])
         ->bulkActions([

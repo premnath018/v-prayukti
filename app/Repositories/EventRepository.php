@@ -9,7 +9,7 @@ class EventRepository implements EventRepositoryInterface
 {
     public function index()
     {
-        return Event::select('id','name','image_url','type')->get();
+        return Event::select('id','name','image_url','type')->orderBy('id','asc')->get();
     }
 
     public function getById($id)
@@ -30,5 +30,9 @@ class EventRepository implements EventRepositoryInterface
     public function delete($id)
     {
         return Event::destroy($id);
+    }
+
+    public function combos() {
+        return Event::select()->where('type','Combo')->orderBy('id','asc')->get();
     }
 }
